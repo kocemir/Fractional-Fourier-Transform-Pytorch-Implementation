@@ -33,7 +33,7 @@ def dfrtmtrx2(N, a):
     
     f = torch.diag(torch.exp(-1j*math.pi/2*a*l))
     
-    F= N**(1/2)*torch.einsum("ij,jk,ni->nk", f, Evec.T, Evec)
+    F= N**(1/2)*torch.einsum("ij,jk,ni->nk", f, Evec.T, Evec)/np.sqrt(N)
     
     return F
 
@@ -160,6 +160,6 @@ y= dFrFT@vec
 print("*****************************************")
 print("DFrFT is computed:",y)
 print("*****************************************")
-z= dFrFT_inv@y/N
+z= dFrFT_inv@y
 print("DFrFT is inverted: Original signal is:",z)
 
